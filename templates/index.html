@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recipe Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <h2>2020810072 진영호 Input 3 Ingredients</h2>
+  <form action="/generate_recipe" method="post">
+    <input type="text" name="ingredient" placeholder="Ingredient 1" required>
+    <input type="text" name="ingredient" placeholder="Ingredient 2" required>
+    <input type="text" name="ingredient" placeholder="Ingredient 3" required>
+
+    <label class="subheading" for="cuisine">Choose a cuisine:</label>
+    <select name="cuisine" id="cuisine">
+      {% for cuisine in cuisines %}
+        <option value="{{ cuisine }}">{{ cuisine }}</option>
+      {% endfor %}
+    </select>
+
+    <label class="subheading">Select dietary restrictions:</label>
+    <div class="checkbox-grid">
+      {% for restriction in dietary_restrictions %}
+        <label><input type="checkbox" name="restrictions" value="{{ restriction }}"> {{ restriction }}</label>
+      {% endfor %}
+    </div>
+
+    <label class="subheading" for="language">Choose a language:</label>
+    <select name="language" id="language">
+      {% for language in languages %}
+        <option value="{{ language }}">{{ language }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="submit" value="Generate Recipe">
+  </form>
+</body>
+</html>
